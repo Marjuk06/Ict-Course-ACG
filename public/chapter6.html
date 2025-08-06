@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6 - ACG Batch Decoder Course</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="window.location.href='index.html'">← Back to Chapters</button>
+            <h1>অধ্যায় ৬</h1>
+            <p>ডাটাবেজ ম্যানেজমেন্ট সিস্টেম</p>
+        </header>
+
+        <div class="video-container">
+            <div class="video-wrapper">
+                <div id="custom-player">
+                    <div id="video-placeholder">
+                        <div class="placeholder-content">
+                            <h3>Select a lecture to start learning</h3>
+                            <p>Click on any lecture card below</p>
+                        </div>
+                    </div>
+                    <div id="video-player" style="display: none;">
+                        <iframe id="youtube-iframe" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="lectures-grid">
+                <div class="lecture-card" data-video="8SaY-hSwu3o">
+                    <h3>লেকচার ১</h3>
+                    <div class="lecture-status">
+                        <span>Duration: 90 min</span>
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-video="xWvVh92zKls">
+                    <h3>লেকচার ২</h3>
+                    <div class="lecture-status">
+                        <span>Duration: 120 min</span>
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-video="7fUtTSxTO4Y">
+                    <h3>লেকচার ৩</h3>
+                    <div class="lecture-status">
+                        <span>Duration: 100 min</span>
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-video="l19wnsJACLU">
+                    <h3>লেকচার ৪</h3>
+                    <div class="lecture-status">
+                        <span>Duration: 150 min</span>
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

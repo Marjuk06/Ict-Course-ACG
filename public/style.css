@@ -1,0 +1,411 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.chapter-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 200px;
+}
+
+.chapter-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-content {
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.chapter-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.chapter-card p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.lecture-count {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.chapter-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay span {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Video player styles for chapter pages */
+.video-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    background: #000;
+}
+
+#custom-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    color: #666;
+}
+
+.placeholder-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.placeholder-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.placeholder-content p {
+    font-size: 1rem;
+    color: #666;
+}
+
+#video-player {
+    width: 100%;
+    height: 100%;
+}
+
+#youtube-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+}
+
+.chapters {
+    display: grid;
+    gap: 30px;
+}
+
+.chapter {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.chapter:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.chapter h2 {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chapter h2:hover {
+    background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+
+.lectures {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.chapter.active .lectures {
+    max-height: 1000px;
+    padding: 20px;
+}
+
+.lecture {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.lecture:hover {
+    background: #e9ecef;
+    border-left-color: #667eea;
+    transform: translateX(5px);
+}
+
+.lecture.active {
+    background: #667eea;
+    color: white;
+    border-left-color: #764ba2;
+}
+
+.lecture-number {
+    font-weight: bold;
+    margin-right: 15px;
+    min-width: 80px;
+}
+
+.lecture-title {
+    flex: 1;
+}
+
+.lecture:last-child {
+    margin-bottom: 0;
+}
+
+/* Lecture cards for chapter pages */
+.lectures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.lecture-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.lecture-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-left-color: #667eea;
+}
+
+.lecture-card.completed {
+    border-left-color: #28a745;
+    background: #d4edda;
+}
+
+.lecture-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.lecture-card p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.lecture-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+.status-indicator.completed {
+    background: #28a745;
+}
+
+.back-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .chapters-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .chapter-card {
+        height: 180px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .lecture {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .lecture-number {
+        margin-right: 0;
+        min-width: auto;
+    }
+
+    .lectures-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .chapter-card {
+        height: 160px;
+    }
+
+    .chapter-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .chapter h2 {
+        font-size: 1.1rem;
+        padding: 12px 15px;
+    }
+
+    .lecture {
+        padding: 10px 12px;
+    }
+
+    .lecture-card {
+        padding: 15px;
+    }
+}
